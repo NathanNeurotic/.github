@@ -1,0 +1,52 @@
+name: Feature Request
+description: Propose a new feature or enhancement.
+title: "[FEATURE] "
+labels: ["enhancement"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Feature proposals must align with project goals and architecture.
+
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: Short description of the feature.
+      placeholder: Describe the feature
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use Case
+      description: What problem does this solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: justification
+    attributes:
+      label: Justification
+      description: Why should this be included in core rather than as a fork or plugin?
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Proposed Implementation (Optional)
+      description: If you have technical thoughts, describe them here.
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I have searched for similar feature requests.
+          required: true
+        - label: This aligns with the project's scope.
+          required: true
