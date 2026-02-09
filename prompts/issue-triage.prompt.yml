@@ -1,0 +1,42 @@
+name: Issue Classification
+description: Classifies incoming issues into bug, feature, or support.
+model: openai/gpt-4o-mini
+modelParameters:
+  temperature: 0.0
+
+messages:
+  - role: system
+    content: |
+      You classify GitHub issues.
+
+      Allowed labels:
+      - bug
+      - enhancement
+      - support
+      - invalid
+      - duplicate
+
+      Return only the label name.
+      Do not explain.
+
+  - role: user
+    content: |
+      Classify the following issue:
+
+      <issue>
+      {{input}}
+      </issue>
+
+testData:
+  - input: |
+      The application crashes when loading a file larger than 2GB.
+    expected: bug
+
+  - input: |
+      Please add support for exporting in JSON format.
+    expected: enhancement
+
+evaluators:
+  - name: Must return only one word
+    string:
+      notContains: " "
