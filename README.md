@@ -31,9 +31,9 @@ So this version:
 
 <table width="150%" border="1" cellspacing="0" cellpadding="16" style="width:150; table-layout:fixed;">
 <tr>
-<th style="width:50%; text-align:center;">----------------- Outbound ------------------</th>
-<th style="width:50%; text-align:center;">------------------- Local -------------------</th>
-<th style="width:50%; text-align:center;">------------------ Network ------------------</th>
+<th style="width:50%; text-align:center;">--------------- Outbound -----------------</th>
+<th style="width:50%; text-align:center;">----------------- Local ------------------</th>
+<th style="width:50%; text-align:center;">---------------- Network -----------------</th>
 </tr>
 
 <tr>
