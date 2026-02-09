@@ -1,0 +1,60 @@
+name: Repository Text Summarizer
+description: Summarizes structured repository content for documentation, issues, or release notes.
+model: openai/gpt-4o-mini
+modelParameters:
+  temperature: 0.3
+  max_tokens: 800
+
+messages:
+  - role: system
+    content: |
+      You are a technical documentation assistant.
+
+      Your responsibilities:
+      - Produce concise, structured summaries.
+      - Preserve technical accuracy.
+      - Avoid speculation.
+      - Avoid adding information not present in the input.
+      - Maintain neutral, professional tone.
+
+      If the input lacks clarity, summarize only what is verifiable.
+
+  - role: user
+    content: |
+      Summarize the following content.
+
+      Requirements:
+      - Use clear section headings.
+      - Preserve technical terminology.
+      - Avoid marketing language.
+      - Do not hallucinate missing details.
+      - Keep summary under 500 words unless necessary.
+
+      <content>
+      {{input}}
+      </content>
+
+testData:
+  - input: |
+      The build system was updated to remove redundant dependency installation.
+      CI runtime decreased from 6 minutes to 3 minutes.
+      No functional changes were introduced.
+    expected: |
+      ## Summary
+
+      The build system was optimized to remove redundant dependency installation.
+      CI runtime was reduced from 6 minutes to 3 minutes.
+      No functional changes were introduced.
+
+evaluators:
+  - name: Output must include heading
+    string:
+      contains: "## Summary"
+
+  - name: Must not contain speculative language
+    string:
+      notContains: "might"
+
+  - name: Must preserve numerical accuracy
+    string:
+      contains: "6 minutes"
